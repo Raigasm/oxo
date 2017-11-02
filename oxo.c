@@ -6,9 +6,9 @@
 #include <string.h>
 #include <assert.h>
 
-#ifndef DEBUG
-#define DEBUG
-#endif
+// #ifndef DEBUG
+// #define DEBUG
+// #endif
 
 #ifdef DEBUG
 #define DEBUG_PRINT(...)          \
@@ -243,8 +243,6 @@ int lastPlayer(game *g)
 bool checkHorizontalWins(game *b)
 {
   DEBUG_PRINT("checking horizontal wins\n");
-  display(b);
-  int winningRow = -1;
   bool winFound = false;
   for (int x = 0; x < 3; x++)
   {
@@ -252,9 +250,8 @@ bool checkHorizontalWins(game *b)
     if (result)
     {
       winFound = true;
-      winningRow = x;
 
-      DEBUG_PRINT("horizontal win found! row = %i\n", winningRow);
+      DEBUG_PRINT("horizontal win found! row = %i\n", x);
     }
   }
   return winFound;
@@ -262,17 +259,15 @@ bool checkHorizontalWins(game *b)
 
 bool checkVerticalWins(game *b)
 {
-  int winningRow = -1;
   bool winFound = false;
-  for (int row = 0; row < 3; row++)
+  for (int x = 0; x < 3; x++)
   {
-    bool result = winningLine(b->grid[0][row], b->grid[1][row], b->grid[2][row]);
+    bool result = winningLine(b->grid[0][x], b->grid[1][x], b->grid[2][x]);
     if (result)
     {
       winFound = true;
-      winningRow = row;
 
-      DEBUG_PRINT("vertical win found!  test row = %i\n", winningRow);
+      DEBUG_PRINT("vertical win found!  test row = %i\n", x);
     }
   }
   return winFound;
@@ -315,7 +310,7 @@ bool checkForWins(game *b)
   bool hasWon = checkHorizontalWins(b) || checkVerticalWins(b) || checkDiagonalWins(b);
   if (!hasWon)
   {
-    printf("no wins detected\n");
+    DEBUG_PRINT("no wins detected\n");
   }
   return hasWon;
 }
@@ -341,7 +336,15 @@ player won(game *g)
 // Check whether the game has ended in a draw.
 bool drawn(game *g)
 {
-  return false;
+  bool boardNotWon = !checkForWins(g);
+
+  DEBUG_PRINT("checking for draw\nboardNotWon: ");
+
+  DEBUG_PRINT(boardNotWon ? "true" : "false");
+
+  DEBUG_PRINT("\nb->moves == %i\n", g->moves);
+
+  return boardNotWon && (g->moves == 9);
 }
 
 //-----------------------------------------------------------------------------
