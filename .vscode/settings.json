@@ -1,0 +1,10 @@
+{
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": "\\.c$",
+        "cmd": "lazygcc ${fileBasenameNoExt}"
+      }
+    ]
+  }
+}
