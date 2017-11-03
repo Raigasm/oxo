@@ -2,6 +2,7 @@
 $red: #f00;
 $blue: #00f;
 $green: #0f0;
+$yellow: yellow;
 
 body {
   background-color: rgba($color: #000000, $alpha: 0.5);
@@ -28,16 +29,44 @@ body {
   }
 }
 button {
+  cursor: pointer;
+
   &.oxo-cell {
     border: none;
     outline: none;
   }
   &.oxo-control {
+    border-radius: 10px;
+    background-color: $green;
+    font-weight: 600;
+    color: #fff;
+    border-color: $green;
+    border-style: solid;
     display: block;
     margin: 10px auto;
     font-size: 20px;
-    width: 590px;
-    height: 30px;
+    width: 400px;
+    outline: none;
+    height: 45px;
+    .playing & {
+      background-color: $yellow;
+      color: #000;
+      border-color: #000;
+    }
+    &:hover {
+      background-color: #55ff55;
+      color: #000;
+      .playing & {
+        background-color: $yellow;
+      }
+    }
+    &:active {
+      background-color: #00cc00;
+      color: #555;
+      .playing & {
+        background-color: $yellow;
+      }
+    }
   }
 }
 
@@ -51,6 +80,7 @@ button {
 }
 
 .oxo-row {
+  cursor: not-allowed;
   display: block;
   margin: 0;
   padding: 0;

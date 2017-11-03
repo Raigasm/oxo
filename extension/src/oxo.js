@@ -1,9 +1,15 @@
 console.log("oxo.js loaded");
 
 var Oxo = {
-  grid: [3][3],
-  next: "X",
-  moves: -1
+  create: first => {
+    var game = {
+      grid: [["N", "N", "N"], ["N", "N", "N"], ["N", "N", "N"]],
+      next: first,
+      moves: 0
+    };
+
+    return game;
+  }
 };
 
 export default Oxo;
