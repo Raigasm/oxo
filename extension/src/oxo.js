@@ -139,4 +139,78 @@ function line(x, y, z) {
 
 OXO.line = line;
 
+function lastPlayer(g) {
+  let current = g.next;
+  let last;
+  switch (current) {
+    case "X":
+      last = "O";
+      break;
+    case "O":
+      last = "X";
+      break;
+    default:
+      last = "N";
+      break;
+  }
+  return last;
+}
+
+function checkHorizontalWins(b) {
+  let winFound = false;
+  for (let x = 0; x < 3; x++) {
+    let result = winningLine(b.grid[x][0], b.grid[x][1], b.grid[x][2]);
+    if (result) {
+      winFound = true;
+    }
+  }
+  return winFound;
+}
+
+function checkVerticalWins(b) {
+  let winFound = false;
+  for (let x = 0; x < 3; x++) {
+    let result = winningLine(b.grid[0][x], b.grid[1][x], b.grid[2][x]);
+    if (result) {
+      winFound = true;
+    }
+  }
+  return winFound;
+}
+
+function checkDiagonalWins(b) {
+  let topLeft, topRight, centre, bottomLeft, bottomRight;
+  topLeft = b.grid[0][0];
+  topRight = b.grid[0][2];
+  bottomLeft = b.grid[2][0];
+  bottomRight = b.grid[2][2];
+  centre = b.grid[1][1];
+
+  if (winningLine(topLeft, centre, bottomRight)) {
+    return true;
+  } else if (winningLine(topRight, centre, bottomLeft)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function checkForWins(b) {
+  let hasWon =
+    checkHorizontalWins(b) || checkVerticalWins(b) || checkDiagonalWins(b);
+  return hasWon;
+}
+
+function won(g) {
+  let result = checkForWins(g);
+  let playa = lastPlayer(g);
+  if (result) {
+    return playa;
+  } else {
+    return "N";
+  }
+}
+
+OXO.won = won;
+
 module.exports = OXO;
