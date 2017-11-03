@@ -1,6 +1,4 @@
-console.log("oxo.js loaded");
-
-var Oxo = {
+var OXO = {
   create: first => {
     var game = {
       grid: [["N", "N", "N"], ["N", "N", "N"], ["N", "N", "N"]],
@@ -12,4 +10,4 @@ var Oxo = {
   }
 };
 
-export default Oxo;
+export default OXO;

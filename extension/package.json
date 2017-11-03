@@ -1,11 +1,13 @@
 {
   "name": "oxo.js",
   "version": "1.0.0",
-  "description": "Tic-Tac-Toe browser game implemented in JavaScript + vue.js, packaged with Webpack",
+  "description":
+    "Tic-Tac-Toe browser game implemented in JavaScript + vue.js, packaged with Webpack",
   "main": "dist/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open --progress --colors --config webpack.dev.js",
+    "test": "mocha",
+    "start":
+      "webpack-dev-server --open --progress --colors --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
   "repository": {
@@ -17,8 +19,10 @@
     "babel-core": "^6.1.2",
     "babel-loader": "^6.1.0",
     "babel-plugin-transform-runtime": "^6.1.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.1.2",
     "babel-preset-stage-0": "^6.1.2",
+    "babel-register": "^6.26.0",
     "babel-runtime": "^5.8.0",
     "bootstrap": "^4.0.0-beta.2",
     "clean-webpack-plugin": "^0.1.17",
@@ -29,6 +33,7 @@
     "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.3",
     "lodash": "^4.17.4",
+    "mocha": "^4.0.1",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.8",
     "precss": "^2.0.0",
