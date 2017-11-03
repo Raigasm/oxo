@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+// const resolve = require("resolve");
 
 module.exports = {
   entry: "./src/index.js",
@@ -41,7 +42,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: "babel",
+        loader: "babel-loader",
         exclude: /node_modules/
       },
       {
@@ -54,10 +55,15 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       title: "OXO.js - Tic-Tac-Toe vue.js demo",
-      template: "src/template.html"
+      template: "src/index.html"
     }),
     new webpack.ProvidePlugin({
       // TODO: provides
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      vue: "vue/dist/vue.min.js"
+    }
+  }
 };
