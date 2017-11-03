@@ -58,21 +58,12 @@ button {
   width: 100%;
   text-align: left;
 
-  .won & {
-    animation: blinker 1s linear infinite;
-    @keyframes blinker {
-      70% {
-        opacity: 0.5;
-      }
-    }
-  }
-
   &:first-of-type {
     border-radius: 30px 30px 0 0;
   }
 
-  &:last-of-type {
-    border-radius: 0px 0px 30px 30px;
+  &:first-of-type {
+    border-radius: 30px 30px 0 0;
   }
 
   &:first-of-type .oxo-cell {
@@ -83,12 +74,17 @@ button {
       border-top-right-radius: 30px;
     }
   }
-  &:last-of-type .oxo-cell {
-    &:first-of-type {
-      border-bottom-left-radius: 30px;
-    }
-    &:last-of-type {
-      border-bottom-right-radius: 30px;
+  &:last-of-type {
+    border-radius: 0px 0px 30px 30px;
+    .oxo-cell {
+      margin-bottom: 10px;
+
+      &:first-of-type {
+        border-bottom-left-radius: 30px;
+      }
+      &:last-of-type {
+        border-bottom-right-radius: 30px;
+      }
     }
   }
 }
@@ -118,6 +114,14 @@ button {
     background-color: $green;
     color: #fff;
   }
+  &.player1 {
+    background-color: $blue;
+    color: #fff;
+  }
+  &.player2 {
+    background-color: $red;
+    color: #fff;
+  }
 }
 
 .oxo-player {
@@ -126,6 +130,10 @@ button {
   width: 150px;
   color: #000;
   font-size: 100px;
+  .player1 &,
+  .player2 & {
+    color: rgba($color: #fff, $alpha: 0.8);
+  }
   .won & {
     color: #fff;
     animation: blinker 1s linear infinite;
@@ -135,8 +143,4 @@ button {
       }
     }
   }
-}
-
-.oxo-row:last-of-type .oxo-cell {
-  margin-bottom: 10px;
 }
