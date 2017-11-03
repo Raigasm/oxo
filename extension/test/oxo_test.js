@@ -180,13 +180,13 @@ describe("OXO", () => {
         "O",
         7
       );
-      assert.equal(OXO.drawn(g) == false);
+      assert.equal(OXO.drawn(g), false);
       g = OXO.createGame(
         [["O", "O", "X"], ["X", "X", "O"], ["O", "X", "X"]],
         "O",
         9
       );
-      assert.equal(OXO.drawn(g) == true);
+      assert.equal(OXO.drawn(g), true);
     });
   });
 });

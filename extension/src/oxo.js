@@ -213,4 +213,10 @@ function won(g) {
 
 OXO.won = won;
 
+function drawn(g) {
+  let boardNotWon = !checkForWins(g);
+  return boardNotWon && g.moves == 9;
+}
+OXO.drawn = drawn;
+
 module.exports = OXO;
