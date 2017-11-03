@@ -14,5 +14,5 @@ Tic-Tac-Toe implemented in both C and JavaScript.
 
 ### oxo.js (assignment extension)
 
-Please refer to `extension/README.md` [(or click here)](./extensions/README.md)
+Please refer to `extension/README.md` [(or click here)](./extension/README.md)
 
