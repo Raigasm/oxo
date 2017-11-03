@@ -5,7 +5,14 @@
     "Tic-Tac-Toe browser game implemented in JavaScript + vue.js, packaged with Webpack",
   "main": "dist/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":
+      "webpack-dev-server --open --progress --colors --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raigasm/rbutera.git"
   },
   "keywords": [
     "tictactoe",
