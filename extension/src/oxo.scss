@@ -94,7 +94,10 @@ button {
   vertical-align: center;
   margin: 10px 0px 0px 10px;
   padding: 0;
-  background-color: #fff;
+  background-color: #222;
+  .playing & {
+    background-color: #fff;
+  }
   width: 180px;
   height: 180px;
   color: #000;
@@ -107,9 +110,11 @@ button {
     width: 0;
     overflow: hidden;
   }
-  &:hover {
+  .playing &:hover {
     cursor: pointer;
   }
+  cursor: not-allowed;
+
   &.won {
     background-color: $green;
     color: #fff;
