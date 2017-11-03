@@ -13,12 +13,13 @@ A live mirror of this project [is available here](http://rbutera.com/demos/oxo)
 If you want to try this on your local machine
 
 1. clone this repo
-2. `cd ./extension && npm install`
-3. `npm run start`
+2. `cd ./extension`
+3. `npm install`
+4. `npm run start`
 
 A server will start at `localhost:8080`.
 
-Press the **START BUTTON** to begin a game. 
+Press the **START BUTTON** to begin a game. Press it again to reset.
 
 ### Running Unit Tests
 

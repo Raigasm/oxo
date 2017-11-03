@@ -1,8 +1,9 @@
 {
   "name": "oxo.js",
   "version": "1.0.0",
-  "description": "Tic-Tac-Toe browser game implemented in JavaScript + vue.js, packaged with Webpack",
-  "main": "index.js",
+  "description":
+    "Tic-Tac-Toe browser game implemented in JavaScript + vue.js, packaged with Webpack",
+  "main": "dist/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
