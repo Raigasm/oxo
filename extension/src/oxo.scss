@@ -1,0 +1,142 @@
+// oxo.scss
+$red: #f00;
+$blue: #00f;
+$green: #0f0;
+
+body {
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  color: #fff;
+  text-align: center;
+  p,
+  h1 {
+    color: #fff;
+    text-align: center;
+  }
+}
+
+.oxo-status-player {
+  display: inline-block;
+  height: 20px;
+  color: $green;
+  border-style: solid;
+  padding: 5px;
+  border-radius: 5px;
+
+  .player1 {
+    color: $red;
+    border-style: solid 3px $red;
+  }
+}
+button {
+  &.oxo-cell {
+    border: none;
+    outline: none;
+  }
+  &.oxo-control {
+    display: block;
+    margin: 10px auto;
+    font-size: 20px;
+    width: 590px;
+    height: 30px;
+  }
+}
+
+#oxo-base {
+  display: block;
+  margin: 0px auto;
+  padding: 0px;
+  border-radius: 30px;
+  width: 590px;
+  background-color: #0f0;
+}
+
+.oxo-row {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  width: 100%;
+  text-align: left;
+
+  .won & {
+    animation: blinker 1s linear infinite;
+    @keyframes blinker {
+      70% {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &:first-of-type {
+    border-radius: 30px 30px 0 0;
+  }
+
+  &:last-of-type {
+    border-radius: 0px 0px 30px 30px;
+  }
+
+  &:first-of-type .oxo-cell {
+    &:first-of-type {
+      border-top-left-radius: 30px;
+    }
+    &:last-of-type {
+      border-top-right-radius: 30px;
+    }
+  }
+  &:last-of-type .oxo-cell {
+    &:first-of-type {
+      border-bottom-left-radius: 30px;
+    }
+    &:last-of-type {
+      border-bottom-right-radius: 30px;
+    }
+  }
+}
+
+.oxo-cell {
+  display: inline-block;
+  vertical-align: center;
+  margin: 10px 0px 0px 10px;
+  padding: 0;
+  background-color: #fff;
+  width: 180px;
+  height: 180px;
+  color: #000;
+  text-align: center;
+  &:before {
+    content: ".";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 0;
+    overflow: hidden;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &.won {
+    background-color: $green;
+    color: #fff;
+  }
+}
+
+.oxo-player {
+  display: inline-block;
+  vertical-align: middle;
+  width: 150px;
+  color: #000;
+  font-size: 100px;
+  .won & {
+    color: #fff;
+    animation: blinker 1s linear infinite;
+    @keyframes blinker {
+      70% {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+.oxo-row:last-of-type .oxo-cell {
+  margin-bottom: 10px;
+}
