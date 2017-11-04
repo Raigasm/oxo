@@ -5,37 +5,9 @@
   </div>
 
   <div id="oxo-base">
-    <div class="oxo-row">
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-    </div>
-    <div class="oxo-row">
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-    </div>
-    <div class="oxo-row">
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
-      </button>
-      <button class="oxo-cell">
-        <div class="oxo-player"></div>
+    <div v-for="row in game.grid" class="oxo-row">
+      <button v-for="cell in row" class="oxo-cell">
+        <div class="oxo-player">{{cell}}</div>
       </button>
     </div>
   </div>
