@@ -23,7 +23,11 @@ body {
   padding: 5px;
   border-radius: 5px;
 
-  .player1 {
+  &.player1 {
+    color: $blue;
+    border-style: solid 3px $blue;
+  }
+  &.player2 {
     color: $red;
     border-style: solid 3px $red;
   }

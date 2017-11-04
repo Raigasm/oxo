@@ -2,11 +2,23 @@ import _ from "lodash";
 
 const freshGame = {
   grid: [
-    [{ id: 0, value: "N" }, { id: 0, value: "N" }, { id: 0, value: "N" }],
-    [{ id: 0, value: "N" }, { id: 0, value: "N" }, { id: 0, value: "N" }],
-    [{ id: 0, value: "N" }, { id: 0, value: "N" }, { id: 0, value: "N" }]
+    [
+      { id: "a1", value: "N" },
+      { id: "a2", value: "N" },
+      { id: "a3", value: "N" }
+    ],
+    [
+      { id: "b1", value: "N" },
+      { id: "b2", value: "N" },
+      { id: "b3", value: "N" }
+    ],
+    [
+      { id: "c1", value: "N" },
+      { id: "c2", value: "N" },
+      { id: "c3", value: "N" }
+    ]
   ],
-  next: "N",
+  next: "X",
   moves: -1
 };
 
@@ -104,6 +116,8 @@ function valid(g, text) {
 OXO.valid = valid;
 
 function setPosition(g, row, col, newValue) {
+  console.log(`setPosition: ${row},${col} -> ${newValue}`);
+  console.log(g);
   g.grid[row][col].value = newValue;
   return g;
 }

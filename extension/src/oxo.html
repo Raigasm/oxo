@@ -1,26 +1,26 @@
 <h1>oxo.js: tic-tac-toe using ES6 and vue.js</h1>
-<div id="oxo-root" class="playing">
+<div id="oxo-root" v-bind:class="{playing: gameState.playing}">
   <div id="oxo-controls">
-    <button class="oxo-control" type="button" autofocus="autofocus">START</button>
+    <button class="oxo-control" type="button" autofocus="autofocus" v-on:click="startGame()">{{startButtonLabel}}</button>
   </div>
 
-  <div id="oxo-base">
-    <div v-for="row in game.grid" class="oxo-row">
-      <button v-for="cell in row" class="oxo-cell">
-        <div v-on:click="makeMove(cell)" class="oxo-player">{{cell.value}}</div>
+  <div id="oxo-base" v-if="gameState.playing">
+    <div v-for="row in gameState.game.grid" class="oxo-row">
+      <button v-for="cell in row" class="oxo-cell" v-on:click="makeMove(cell)" v-bind:class="{ player1: cell.value == 'X', player2: cell.value == 'O' }">
+        <div v-if="cell.value != 'N'" class="oxo-player">{{cell.value}}</div>
       </button>
     </div>
   </div>
 
-  <div id="oxo-instructions">
+  <div id="oxo-instructions" v-if="!gameState.playing">
     <p>Press the start button to begin!</p>
   </div>
 
-  <div id="oxo-status">
+  <div id="oxo-status" v-if="gameState.playing">
     <p>It's
-      <span class="oxo-status-player">Player 1</span>'s turn.</p>
+      <span class="oxo-status-player" v-bind:class="{ player1: gameState.game.next == 'X', player2: gameState.game.next == 'O' }">Player {{gameState.game.next}}</span>'s turn.</p>
     <p>
-      <strong>0</strong> moves have been taken.</p>
+      <strong>{{gameState.game.moves}}</strong> moves have been taken.</p>
   </div>
 
 </div>
