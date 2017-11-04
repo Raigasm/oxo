@@ -90,7 +90,7 @@ function valid(g, text) {
     return "BadDigit";
   }
 
-  if (isValid && g.grid[testRow][testCol] != "N") {
+  if (isValid && g.grid[testRow][testCol].value != "N") {
     isValid = false;
     return "BadCell";
   }
@@ -104,7 +104,7 @@ function valid(g, text) {
 OXO.valid = valid;
 
 function setPosition(g, row, col, newValue) {
-  g.grid[row][col] = newValue;
+  g.grid[row][col].value = newValue;
   return g;
 }
 
@@ -121,8 +121,6 @@ function move(g, r, c) {
 }
 
 OXO.move = move;
-
-function line(x, y, z) {}
 
 function winningLine(x, y, z) {
   if (x == y && y == z && x != "N") {
@@ -163,7 +161,11 @@ function lastPlayer(g) {
 function checkHorizontalWins(b) {
   let winFound = false;
   for (let x = 0; x < 3; x++) {
-    let result = winningLine(b.grid[x][0], b.grid[x][1], b.grid[x][2]);
+    let result = winningLine(
+      b.grid[x][0].value,
+      b.grid[x][1].value,
+      b.grid[x][2].value
+    );
     if (result) {
       winFound = true;
     }
@@ -174,7 +176,11 @@ function checkHorizontalWins(b) {
 function checkVerticalWins(b) {
   let winFound = false;
   for (let x = 0; x < 3; x++) {
-    let result = winningLine(b.grid[0][x], b.grid[1][x], b.grid[2][x]);
+    let result = winningLine(
+      b.grid[0][x].value,
+      b.grid[1][x].value,
+      b.grid[2][x].value
+    );
     if (result) {
       winFound = true;
     }
@@ -184,11 +190,11 @@ function checkVerticalWins(b) {
 
 function checkDiagonalWins(b) {
   let topLeft, topRight, centre, bottomLeft, bottomRight;
-  topLeft = b.grid[0][0];
-  topRight = b.grid[0][2];
-  bottomLeft = b.grid[2][0];
-  bottomRight = b.grid[2][2];
-  centre = b.grid[1][1];
+  topLeft = b.grid[0][0].value;
+  topRight = b.grid[0][2].value;
+  bottomLeft = b.grid[2][0].value;
+  bottomRight = b.grid[2][2].value;
+  centre = b.grid[1][1].value;
 
   if (winningLine(topLeft, centre, bottomRight)) {
     return true;

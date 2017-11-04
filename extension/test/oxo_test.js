@@ -12,20 +12,32 @@ describe("OXO", () => {
     it("be able to create new games", () => {
       let g = OXO.createGame(
         [
-          [{ id: 0, value: "N" }, { id: 1, value: "N" }, { id: 2, value: "N" }],
-          [{ id: 3, value: "N" }, { id: 4, value: "N" }, { id: 5, value: "N" }],
-          [{ id: 6, value: "N" }, { id: 7, value: "N" }, { id: 8, value: "N" }]
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "N" },
+            { id: "b2", value: "N" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "N" },
+            { id: "c3", value: "N" }
+          ]
         ],
         "N",
         -1
       );
       assert.equal(typeof OXO.newGame, "function");
       g = OXO.newGame(g, "X");
-      assert.equal(g.grid[0][0], "N");
-      assert.equal(g.grid[1][1], "N");
-      assert.equal(g.grid[2][2], "N");
-      assert.equal(g.grid[0][2], "N");
-      assert.equal(g.grid[2][1], "N");
+      assert.equal(g.grid[0][0].value, "N");
+      assert.equal(g.grid[1][1].value, "N");
+      assert.equal(g.grid[2][2].value, "N");
+      assert.equal(g.grid[0][2].value, "N");
+      assert.equal(g.grid[2][1].value, "N");
       assert.equal(g.next, "X");
       assert.equal(g.moves, 0);
       g = OXO.newGame(g, "O");
@@ -58,12 +70,24 @@ describe("OXO", () => {
       // *g = (game){{{N, N, N}, {N, N, N}, {N, X, N}}, O, 1};
       g = OXO.createGame(
         [
-          [{ id: 0, value: "N" }, { id: 1, value: "N" }, { id: 2, value: "N" }],
-          [{ id: 3, value: "N" }, { id: 4, value: "N" }, { id: 5, value: "N" }],
-          [{ id: 6, value: "N" }, { id: 7, value: "X" }, { id: 8, value: "N" }]
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "N" },
+            { id: "b2", value: "N" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "X" },
+            { id: "c3", value: "N" }
+          ]
         ],
-        "N",
-        -1
+        "O",
+        1
       );
       assert.equal(OXO.valid(g, "c2"), "BadCell");
     });
@@ -74,11 +98,11 @@ describe("OXO", () => {
       let g = OXO.createGame();
       g = OXO.newGame(g, "X");
       g = OXO.move(g, OXO.row("b2"), OXO.col("b2"));
-      assert.equal(g.grid[1][1], "X");
+      assert.equal(g.grid[1][1].value, "X");
       assert.equal(g.next, "O");
       assert.equal(g.moves, 1);
       g = OXO.move(g, OXO.row("a3"), OXO.col("a3"));
-      assert.equal(g.grid[0][2], "O");
+      assert.equal(g.grid[0][2].value, "O");
       assert.equal(g.next, "X");
       assert.equal(g.moves, 2);
     });
@@ -100,50 +124,208 @@ describe("OXO", () => {
     it("have a won method for detecting wins", () => {
       assert.equal(typeof OXO.won, "function");
       let g;
+      // *g = (game){{{X, X, X}, {N, O, N}, {N, O, N}}, O, 5};
       g = OXO.createGame(
-        [["X", "X", "X"], ["N", "O", "N"], ["N", "O", "N"]],
+        [
+          [
+            { id: "a1", value: "X" },
+            { id: "a2", value: "X" },
+            { id: "a3", value: "X" }
+          ],
+          [
+            { id: "b1", value: "N" },
+            { id: "b2", value: "O" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "O" },
+            { id: "c3", value: "N" }
+          ]
+        ],
+        "O",
+        5
+      );
+
+      assert.equal(OXO.won(g), "X");
+      g = OXO.createGame(
+        [
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "O" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "X" },
+            { id: "b3", value: "X" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "O" },
+            { id: "c3", value: "N" }
+          ]
+        ],
         "O",
         5
       );
       assert.equal(OXO.won(g), "X");
+
       g = OXO.createGame(
-        [["N", "O", "N"], ["X", "X", "X"], ["N", "O", "N"]],
+        [
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "O" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "N" },
+            { id: "b2", value: "O" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "X" },
+            { id: "c3", value: "X" },
+            { id: "c3", value: "X" }
+          ]
+        ],
         "O",
         5
       );
+
       assert.equal(OXO.won(g), "X");
       g = OXO.createGame(
-        [["N", "O", "N"], ["N", "O", "N"], ["X", "X", "X"]],
-        "O",
-        5
-      );
-      assert.equal(OXO.won(g), "X");
-      g = OXO.createGame(
-        [["O", "N", "N"], ["O", "X", "N"], ["O", "N", "X"]],
+        [
+          [
+            { id: "a1", value: "O" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "O" },
+            { id: "b2", value: "X" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "O" },
+            { id: "c3", value: "N" },
+            { id: "c3", value: "X" }
+          ]
+        ],
         "X",
         5
       );
       assert.equal(OXO.won(g), "O");
+
       g = OXO.createGame(
-        [["N", "O", "N"], ["X", "O", "N"], ["N", "O", "X"]],
+        [
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "O" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "O" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "O" },
+            { id: "c3", value: "X" }
+          ]
+        ],
+        "X",
+        5
+      );
+
+      g = OXO.createGame(
+        [
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "O" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "O" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "O" },
+            { id: "c3", value: "X" }
+          ]
+        ],
         "X",
         5
       );
       assert.equal(OXO.won(g), "O");
+
       g = OXO.createGame(
-        [["N", "N", "O"], ["X", "N", "O"], ["N", "N", "O"]],
+        [
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "O" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "N" },
+            { id: "b3", value: "O" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "N" },
+            { id: "c3", value: "O" }
+          ]
+        ],
         "X",
         5
       );
       assert.equal(OXO.won(g), "O");
+
       g = OXO.createGame(
-        [["X", "N", "O"], ["N", "X", "O"], ["N", "N", "X"]],
+        [
+          [
+            { id: "a1", value: "X" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "O" }
+          ],
+          [
+            { id: "b1", value: "N" },
+            { id: "b2", value: "X" },
+            { id: "b3", value: "O" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "N" },
+            { id: "c3", value: "X" }
+          ]
+        ],
         "O",
         5
       );
       assert.equal(OXO.won(g), "X");
+
       g = OXO.createGame(
-        [["X", "N", "O"], ["N", "O", "X"], ["O", "N", "N"]],
+        [
+          [
+            { id: "a1", value: "X" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "O" }
+          ],
+          [
+            { id: "b1", value: "N" },
+            { id: "b2", value: "O" },
+            { id: "b3", value: "X" }
+          ],
+          [
+            { id: "c1", value: "O" },
+            { id: "c3", value: "N" },
+            { id: "c3", value: "N" }
+          ]
+        ],
         "X",
         5
       );
@@ -153,26 +335,94 @@ describe("OXO", () => {
     // Test no winning line (tests 45 to 48)
     it("should be able to detect if there are no wins yet", () => {
       let g;
+
       g = OXO.createGame(
-        [["N", "N", "N"], ["N", "N", "N"], ["N", "N", "N"]],
+        [
+          [
+            { id: "a1", value: "N" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "N" }
+          ],
+          [
+            { id: "b1", value: "N" },
+            { id: "b2", value: "N" },
+            { id: "b3", value: "N" }
+          ],
+          [
+            { id: "c1", value: "N" },
+            { id: "c3", value: "N" },
+            { id: "c3", value: "N" }
+          ]
+        ],
         "X",
         0
       );
+
       assert.equal(OXO.won(g), "N");
+
       g = OXO.createGame(
-        [["O", "N", "X"], ["X", "X", "O"], ["O", "X", "N"]],
+        [
+          [
+            { id: "a1", value: "O" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "X" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "X" },
+            { id: "b3", value: "O" }
+          ],
+          [
+            { id: "c1", value: "O" },
+            { id: "c3", value: "X" },
+            { id: "c3", value: "N" }
+          ]
+        ],
         "O",
         7
       );
       assert.equal(OXO.won(g), "N");
       g = OXO.createGame(
-        [["X", "O", "X"], ["X", "O", "O"], ["O", "X", "O"]],
+        [
+          [
+            { id: "a1", value: "X" },
+            { id: "a2", value: "O" },
+            { id: "a3", value: "X" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "O" },
+            { id: "b3", value: "O" }
+          ],
+          [
+            { id: "c1", value: "O" },
+            { id: "c3", value: "X" },
+            { id: "c3", value: "O" }
+          ]
+        ],
         "X",
         9
       );
+
       assert.equal(OXO.won(g), "N");
       g = OXO.createGame(
-        [["O", "O", "X"], ["X", "X", "O"], ["O", "X", "X"]],
+        [
+          [
+            { id: "a1", value: "O" },
+            { id: "a2", value: "O" },
+            { id: "a3", value: "X" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "X" },
+            { id: "b3", value: "O" }
+          ],
+          [
+            { id: "c1", value: "O" },
+            { id: "c3", value: "X" },
+            { id: "c3", value: "X" }
+          ]
+        ],
         "O",
         9
       );
@@ -184,13 +434,45 @@ describe("OXO", () => {
       let g;
       assert.equal(typeof OXO.drawn, "function");
       g = OXO.createGame(
-        [["O", "N", "X"], ["X", "X", "O"], ["O", "X", "N"]],
+        [
+          [
+            { id: "a1", value: "O" },
+            { id: "a2", value: "N" },
+            { id: "a3", value: "X" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "X" },
+            { id: "b3", value: "O" }
+          ],
+          [
+            { id: "c1", value: "O" },
+            { id: "c3", value: "X" },
+            { id: "c3", value: "N" }
+          ]
+        ],
         "O",
         7
       );
       assert.equal(OXO.drawn(g), false);
       g = OXO.createGame(
-        [["O", "O", "X"], ["X", "X", "O"], ["O", "X", "X"]],
+        [
+          [
+            { id: "a1", value: "O" },
+            { id: "a2", value: "O" },
+            { id: "a3", value: "X" }
+          ],
+          [
+            { id: "b1", value: "X" },
+            { id: "b2", value: "X" },
+            { id: "b3", value: "O" }
+          ],
+          [
+            { id: "c1", value: "O" },
+            { id: "c3", value: "X" },
+            { id: "c3", value: "X" }
+          ]
+        ],
         "O",
         9
       );

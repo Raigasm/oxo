@@ -30,7 +30,7 @@ var root = new Vue({
   },
   methods: {
     makeMove: cell => {
-      console.log(cell);
+      game = OXO.move(game, OXO.row(cell.id), OXO.col(cell.id));
     }
   }
 });
