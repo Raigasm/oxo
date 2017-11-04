@@ -7,7 +7,10 @@ console.log("hello world");
 var game = {};
 
 var state = {
-  playing: false
+  playing: false,
+  won: {
+    player: "N"
+  }
 };
 
 var newGame = () => {
@@ -15,6 +18,8 @@ var newGame = () => {
   game = OXO.newGame("X");
   state.playing = true;
 };
+
+newGame();
 
 var root = new Vue({
   el: "#oxo-root",
