@@ -19,7 +19,7 @@ var newGame = () => {
 var root = new Vue({
   el: "#oxo-root",
   data: {
-    message: "You g loaded this page on " + new Date().toLocaleString(),
+    message: "You loaded this page on " + new Date().toLocaleString(),
     game: game,
     gameState: state
   }
