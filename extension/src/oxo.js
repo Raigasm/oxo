@@ -1,7 +1,11 @@
 import _ from "lodash";
 
 const freshGame = {
-  grid: [["N", "N", "N"], ["N", "N", "N"], ["N", "N", "N"]],
+  grid: [
+    [{ id: 0, value: "N" }, { id: 0, value: "N" }, { id: 0, value: "N" }],
+    [{ id: 0, value: "N" }, { id: 0, value: "N" }, { id: 0, value: "N" }],
+    [{ id: 0, value: "N" }, { id: 0, value: "N" }, { id: 0, value: "N" }]
+  ],
   next: "N",
   moves: -1
 };
