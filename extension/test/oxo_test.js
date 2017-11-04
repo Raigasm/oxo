@@ -11,7 +11,11 @@ describe("OXO", () => {
     // Test initialization of the game (tests 1 to 8)
     it("be able to create new games", () => {
       let g = OXO.createGame(
-        [["N", "N", "N"], ["N", "N", "N"], ["N", "N", "N"]],
+        [
+          [{ id: 0, value: "N" }, { id: 1, value: "N" }, { id: 2, value: "N" }],
+          [{ id: 3, value: "N" }, { id: 4, value: "N" }, { id: 5, value: "N" }],
+          [{ id: 6, value: "N" }, { id: 7, value: "N" }, { id: 8, value: "N" }]
+        ],
         "N",
         -1
       );
@@ -53,9 +57,13 @@ describe("OXO", () => {
       assert.equal(OXO.valid(g, ""), "BadFormat");
       // *g = (game){{{N, N, N}, {N, N, N}, {N, X, N}}, O, 1};
       g = OXO.createGame(
-        [["N", "N", "N"], ["N", "N", "N"], ["N", "X", "N"]],
-        "O",
-        1
+        [
+          [{ id: 0, value: "N" }, { id: 1, value: "N" }, { id: 2, value: "N" }],
+          [{ id: 3, value: "N" }, { id: 4, value: "N" }, { id: 5, value: "N" }],
+          [{ id: 6, value: "N" }, { id: 7, value: "X" }, { id: 8, value: "N" }]
+        ],
+        "N",
+        -1
       );
       assert.equal(OXO.valid(g, "c2"), "BadCell");
     });
