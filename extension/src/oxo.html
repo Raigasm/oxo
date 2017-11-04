@@ -7,7 +7,7 @@
   <div id="oxo-base">
     <div v-for="row in game.grid" class="oxo-row">
       <button v-for="cell in row" class="oxo-cell">
-        <div class="oxo-player">{{cell}}</div>
+        <div v-on:click="makeMove(cell)" class="oxo-player">{{cell}}</div>
       </button>
     </div>
   </div>

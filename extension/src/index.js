@@ -27,5 +27,10 @@ var root = new Vue({
     message: "You loaded this page on " + new Date().toLocaleString(),
     game: game,
     gameState: state
+  },
+  methods: {
+    makeMove: cell => {
+      console.log(cell);
+    }
   }
 });
