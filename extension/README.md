@@ -40,3 +40,6 @@ Press the **START BUTTON** to begin a game. Press it again to reset.
 
 ## Development Notes
 
+- I ran into the issue of responding to user click events, and due to time constraints, I lazily modified the grid elements to POJOs with the format `{id:"a1", value: "N"}`.
+- It would have been better to have used the component pattern when implementing the app ui.
+

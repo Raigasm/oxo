@@ -1,6 +1,6 @@
 {
   "name": "oxo.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description":
     "Tic-Tac-Toe browser game implemented in JavaScript + vue.js, packaged with Webpack",
   "main": "dist/index.html",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Raigasm/rbutera.git"
+    "url": "git+https://github.com/Raigasm/oxo.git"
   },
   "dependencies": {
     "autoprefixer": "^7.1.6",
